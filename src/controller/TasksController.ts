@@ -104,4 +104,13 @@ export const finishedTask = async (request: Request, response: Response) => {
 
 };
 
+export const deleteTask = async (request: Request, response: Response) => {
+    try {
+        const { id } = request.params;
+        const task = await getRepository(Tasks).delete(id);
 
+        return response.json( task ? "Task delete with success" : "Task not Removed");
+    } catch (e) {
+        return response.status(404).json({"Menssage" : `${e}`});
+    }
+}
