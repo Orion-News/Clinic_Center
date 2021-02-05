@@ -1,5 +1,5 @@
 import { getRepository } from "typeorm";
-import { Request, Response } from "express";
+import { request, Request, Response } from "express";
 import { Tasks } from "../entity/Tasks";
 
 export const indexTasks = async (request: Request, response: Response) => {
@@ -20,6 +20,24 @@ export const indexTasks = async (request: Request, response: Response) => {
         return response.status(400).json({"Menssage": `${e}`})
     }
 };
+
+export const showTaks = async (request: Request, response: Response) => {
+    try {
+        const { id } = request.params;
+        const task = await getRepository(Tasks).findOne(id);
+        
+        const result = {
+            status: 200,
+            message: 'Success full, find one Task',
+            data: task
+        }
+        
+        return response.json(result);
+
+    } catch (e) {
+        return response.status(400).json({ "Menssage": `${e}`})
+    }
+}
 
 export const storeTasks = async (request: Request, response: Response) => {
     try {
