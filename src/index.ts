@@ -1,13 +1,29 @@
 import "reflect-metadata";
 import { createConnection } from 'typeorm';
-import * as express from "express";
-import * as bodyParser from "body-parser";
 import routes from "./routes";
+import * as express from 'express';
+import cors from 'cors';
 
-const port = 3333;
-const app = express();
-createConnection()
-app.use(bodyParser.json())
-app.use(routes)
 
-app.listen(port, () => console.log(`subiu na porta ${port}`))
+class App {
+    public express: express.Application;
+
+    public constructor () {
+        this.express = express();
+    }
+
+    private middlewares (): void {
+        this.express.use(express.json());
+        this.express.use(cors());
+    }
+
+    private dataBase (): void {
+        createConnection()
+    }
+
+    private routes (): void {
+        this.express.use(routes);
+    }
+}
+
+export default new App().express;
