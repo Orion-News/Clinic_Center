@@ -3,6 +3,24 @@ import { request, Request, Response } from "express";
 import { Tasks } from "../entity/Tasks";
 
 class TasksController {
+    
+    public async store (request: Request, response: Response): Promise<Response> {
+            try {
+                const createTasks = await getRepository(Tasks).save(request.body);
+                
+                const result = {
+                    status: 201,
+                    message: 'Successful, create a new Tasks!',
+                    data: createTasks
+                };
+        
+                return response.json(result);
+        
+            } catch (e) {
+                return response.status(400).json({"Menssage": `${e}`})
+            }
+        };
+
     public async index (request: Request, response: Response): Promise<Response> {
         try {
             const tasks = await getRepository(Tasks).find();
@@ -24,22 +42,7 @@ class TasksController {
 }
 export default new TasksController();
 
-// export const storeTasks = async (request: Request, response: Response) => {
-//     try {
-//         const createTasks = await getRepository(Tasks).save(request.body);
-        
-//         const result = {
-//             status: 201,
-//             message: 'Successful, create a new Tasks!',
-//             data: createTasks
-//         };
-
-//         return response.json(result);
-
-//     } catch (e) {
-//         return response.status(400).json({"Menssage": `${e}`})
-//     }
-// };
+// export const storeTasks = 
 
 // export const showTask = async (request: Request, response: Response) => {
 //     try {
