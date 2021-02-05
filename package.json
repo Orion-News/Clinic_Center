@@ -10,6 +10,7 @@
       "typescript": "3.3.3333"
    },
    "dependencies": {
+      "@types/cors": "^2.8.9",
       "body-parser": "^1.18.1",
       "cors": "^2.8.5",
       "express": "^4.15.4",
@@ -19,6 +20,6 @@
    },
    "scripts": {
       "start": "ts-node src/index.ts",
-      "dev": "nodemon src/index.ts"
+      "dev": "nodemon src/Server.ts"
    }
 }
