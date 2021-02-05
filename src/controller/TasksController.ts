@@ -6,7 +6,7 @@ export const indexTasks = async (request: Request, response: Response) => {
     try {
         const tasks = await getRepository(Tasks).find();
         
-        if (tasks) throw new Error(`Deu Xabu, Não tem tasks`);
+        if (!tasks) throw new Error(`Deu Xabu, Não tem tasks`);
 
         const result = {
             status: 200,
