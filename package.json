@@ -20,6 +20,7 @@
    },
    "scripts": {
       "start": "ts-node src/index.ts",
-      "dev": "nodemon src/Server.ts"
+      "upServer": "nodemon src/Server.ts",
+      "docker-start" : "docker start 48d0f2c3f789"
    }
 }
