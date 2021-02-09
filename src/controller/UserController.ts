@@ -3,7 +3,6 @@ import { Request, Response } from "express";
 import { User } from "../entity/User";
 
 import * as bcrypt from 'bcrypt';
-import { request } from "http";
 
 export const storeUser = async (request: Request, response: Response) => {
     try {
