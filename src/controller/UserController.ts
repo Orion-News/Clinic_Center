@@ -3,6 +3,7 @@ import { Request, Response } from "express";
 import { User } from "../entity/User";
 
 import * as bcrypt from 'bcrypt';
+import { request } from "http";
 
 export const storeUser = async (request: Request, response: Response) => {
     try {
@@ -19,5 +20,24 @@ export const storeUser = async (request: Request, response: Response) => {
         return response.json(user)
     } catch (e) {
         return response.status(400).json({ "Message" : `${e}`});
+    }
+}
+
+export const showUser = async (request: Request, response: Response) => {
+    try {
+        const { id } = request.params;
+        const user = getRepository(User).findOne(id);
+
+        if (!user) throw new Error(`Usuario não existe!`);
+
+        const result = {
+            status: 200,
+            message: 'Successful, find one Task!',
+            data: user
+        }
+
+        return response.json(result)
+    } catch(e) {
+        return response.status(404).json({ "Message" : `${e}`});
     }
 }
