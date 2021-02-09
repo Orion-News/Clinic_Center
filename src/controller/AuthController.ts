@@ -17,7 +17,7 @@ export const signIn = async (request: Request, response: Response) => {
 
         if (!user || !user[0].email) throw new Error(`User not found`);
 
-        if (await bcrypt.compare(password, user[0].password)) throw new Error (`Invalid Password`);
+        if (!await bcrypt.compare(password, user[0].password)) throw new Error (`Invalid Password`);
 
         const token = jwt.sign({ id: user[0].id}, process.env.KEY_SECRET, {
             expiresIn: '1d'
