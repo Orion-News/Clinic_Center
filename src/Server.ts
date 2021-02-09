@@ -1,5 +1,5 @@
 import app from './App';
 
-const port = process.env.PORT || 3333;
+const port = 3333 || process.env.PORT;
 
 app.listen(port, () => console.log(`Subiu na porta ${port}, ou click em http://localhost:${port}`))
