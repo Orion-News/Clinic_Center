@@ -1,3 +1,4 @@
+import './config/env';
 import "reflect-metadata";
 import { createConnection } from 'typeorm';
 import routes from "./routes";
