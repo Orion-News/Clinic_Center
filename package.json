@@ -10,7 +10,9 @@
       "typescript": "3.3.3333"
    },
    "dependencies": {
+      "@types/bcrypt": "^3.0.0",
       "@types/cors": "^2.8.9",
+      "bcrypt": "^5.0.0",
       "body-parser": "^1.18.1",
       "cors": "^2.8.5",
       "express": "^4.15.4",
@@ -21,6 +23,6 @@
    "scripts": {
       "start": "ts-node src/index.ts",
       "upServer": "nodemon src/Server.ts",
-      "docker-start" : "docker start 48d0f2c3f789"
+      "docker-start": "docker start 48d0f2c3f789"
    }
 }
