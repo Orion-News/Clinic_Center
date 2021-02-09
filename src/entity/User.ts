@@ -1,6 +1,8 @@
-import {Entity, PrimaryGeneratedColumn, Column, CreateDateColumn} from "typeorm";
+import {Entity, PrimaryGeneratedColumn, Column, Unique, CreateDateColumn} from "typeorm";
 
+@Unique(['email'])
 @Entity()
+
 export class User {
 
     @PrimaryGeneratedColumn()
@@ -11,6 +13,9 @@ export class User {
 
     @Column()
     lastName: string;
+
+    @Column({ name: 'email' })
+    email: string;
     
     @Column()
     password: string;
