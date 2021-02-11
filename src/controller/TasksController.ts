@@ -84,6 +84,7 @@ export const indexTasks = async (request: Request, response: Response) => {
 export const finishedTask = async (request: Request, response: Response) => {
     try {
         const { id } = request.params;
+        if(!await getRepository(Tasks).findOne(id)) throw new Error(`Not found Task with ID: ${id}!`)
         const task = await getRepository(Tasks).update(id,{ 
             finished: true
         });
@@ -108,8 +109,9 @@ export const finishedTask = async (request: Request, response: Response) => {
 
 export const deleteTask = async (request: Request, response: Response) => {
     try {
-        
         const { id } = request.params;
+        if(!await getRepository(Tasks).findOne(id)) throw new Error(`Not found Task with ID: ${id}!`);
+        
         const task = await getRepository(Tasks).delete(id);
 
         return response.json(task ? "this ok, removed with succesful" : "item is not found");
