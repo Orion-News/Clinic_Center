@@ -107,8 +107,14 @@ export const finishedTask = async (request: Request, response: Response) => {
 };
 
 export const deleteTask = async (request: Request, response: Response) => {
-    const { id } = request.params;
-    const task = await getRepository(Tasks).delete(id);
+    try {
+        
+        const { id } = request.params;
+        const task = await getRepository(Tasks).delete(id);
 
-    return response.json(task ? "this ok, removed with succesful" : "item is not found");
+        return response.json(task ? "this ok, removed with succesful" : "item is not found");
+    
+    } catch (e) {
+        return response.status(404).json({"Message": `${e}`});
+    }
 }
