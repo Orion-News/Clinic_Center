@@ -23,6 +23,8 @@ export const showTask = async (request: Request, response: Response) => {
         const { id } = request.params;
         const task = await getRepository(Tasks).findOne(id);
         
+        if(!task) throw new Error(`Not Found Task with id ${id}`);
+
         const result = {
             status: 200,
             message: 'Successful, find one Task!',
@@ -39,8 +41,9 @@ export const showTask = async (request: Request, response: Response) => {
 export const updateTasks = async (request: Request, response: Response) => {
     try {
         const { id } = request.params;
-        const task = await getRepository(Tasks).update(id, request.body);
+        if(!await getRepository(Tasks).findOne(id)) throw new Error(`Nout Found User With this ID: ${id}`);
 
+        const task = await getRepository(Tasks).update(id, request.body);
         
         if(task.affected === 1) {
             const taskUpdated = await getRepository(Tasks).findOne(id);
@@ -107,5 +110,5 @@ export const deleteTask = async (request: Request, response: Response) => {
     const { id } = request.params;
     const task = await getRepository(Tasks).delete(id);
 
-    return response.json( task ? "this ok, removed with succesful" : "item is not found");
+    return response.json(task ? "this ok, removed with succesful" : "item is not found");
 }
