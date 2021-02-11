@@ -13,11 +13,11 @@ routes.post('/signIn', signIn);
 
 // routes to tasks
 routes.post('/task/store', authenticate, storeTasks);
-routes.get('/task/:id', showTask);
-routes.put('/task/:id', updateTasks);
-routes.delete('/task/:id', deleteTask);
-routes.get('/task', authenticate, indexTasks);
-routes.patch('/task/:id', finishedTask);
+routes.get('/task/:id', authenticate, showTask);
+routes.put('/task/:id', authenticate, updateTasks);
+routes.delete('/task/:id', authenticate, deleteTask);
+routes.get('/task', authenticate, authenticate, authenticate, indexTasks);
+routes.patch('/task/:id', authenticate, finishedTask);
 
 
 export default routes;
