@@ -10,6 +10,9 @@ routes.use(json());
 routes.post('/signUp', storeUser);
 routes.post('/signIn', signIn);
 
+routes.get('/', (req, res) => {
+    return res.json({ Message : 'Geverson'})
+})
 
 // routes to tasks
 routes.post('/task/store', authenticate, storeTasks);
