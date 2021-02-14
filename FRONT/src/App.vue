@@ -1,7 +1,6 @@
 <template>
   <div id="app">
-    <h4> Clinic Center </h4>
-    <img src="./assets/assets/logo.png">
+    <router-view/>
   </div>
 </template>
 
