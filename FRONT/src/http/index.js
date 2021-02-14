@@ -7,4 +7,4 @@ const http = Vue.http
 
 http.options.root = 'http://localhost:3333/'
 
-http.get().then(res => console.log(res.body))
+export { http }
